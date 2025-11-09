@@ -1,0 +1,54 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  frontend:
+    name: "⚛️ Frontend Build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: pnpm install
+
+      - name: Lint
+        working-directory: frontend
+        run: pnpm lint
+
+      - name: Test with coverage
+        working-directory: frontend
+        run: pnpm test -- --coverage --runInBand
+
+      - name: Build
+        working-directory: frontend
+        run: pnpm build
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: frontend/coverage
+
+      - name: Trigger Vercel deploy
+        if: github.ref == 'refs/heads/main' && success()
+        run: |
+          if [ -n "${{ secrets.VERCEL_DEPLOY_HOOK }}" ]; then
+            curl -X POST -d '{}' "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+          else
+            echo "No Vercel hook configured; skipping deploy trigger."
+          fi

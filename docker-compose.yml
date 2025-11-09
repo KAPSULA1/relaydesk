@@ -1,0 +1,83 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: relaydesk-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    command: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:8010
+    ports:
+      - "8010:8010"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://localhost:8010/api/health/').status==200 else 1)\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - relaydesk-net
+    # volumes:
+    #   - ./backend:/app  # Uncomment for live code reload during development
+
+  frontend:
+    container_name: relaydesk-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend/.env.local
+    ports:
+      - "3100:3100"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - relaydesk-net
+    # volumes:
+    #   - ./frontend:/app  # Uncomment for local development with hot reload
+
+  db:
+    image: postgres:16
+    container_name: relaydesk-db
+    environment:
+      POSTGRES_USER: relayuser
+      POSTGRES_PASSWORD: relaypass
+      POSTGRES_DB: relaydesk
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - relaydesk-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: relaydesk-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - relaydesk-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
+
+networks:
+  relaydesk-net:
+    driver: bridge

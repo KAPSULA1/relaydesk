@@ -1,0 +1,94 @@
+# ==========================
+# RelayDesk Project Ignore
+# ==========================
+
+# OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.orig
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+backend/htmlcov/
+celerybeat-schedule
+instance/
+
+# Virtual environments
+venv/
+.venv/
+env/
+backend/venv*/
+backend/venv_relaydesk_pro/
+
+# Django & local configs
+backend/db.sqlite3
+backend/media/
+backend/staticfiles/
+backend/.env
+backend/.env.*
+
+# Node / Next.js
+node_modules/
+frontend/node_modules/
+frontend/.next/
+.next/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# pnpm store
+.pnpm-store
+frontend/.pnpm-store
+
+# Frontend envs
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Logs
+*.log
+logs/
+backend/logs/
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.iml
+.fleet/
+
+# Docker / Compose artifacts
+docker-compose.override.yml
+*.pid
+
+# Misc generated docs
+*.tgz
+*.zip
+
+# Coverage reports
+frontend/coverage/
+coverage/
+
+# Local scripts or secrets
+secrets.*
+*.key
+*.pem
+

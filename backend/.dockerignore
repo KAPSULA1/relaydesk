@@ -1,0 +1,7 @@
+venv*/
+*.pyc
+__pycache__/
+.django_cache/
+pytest_cache/
+.media/
+.env*

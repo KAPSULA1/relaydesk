@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "regions": ["iad"],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://relaydesk-backend.onrender.com",
+    "NEXT_PUBLIC_APP_NAME": "RelayDesk",
+    "NEXT_PUBLIC_ENV": "production"
+  },
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://relaydesk-backend.onrender.com/api/:match*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}
+      ]
+    }
+  ]
+}
