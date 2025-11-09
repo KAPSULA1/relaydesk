@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=800" width="120" alt="RelayDesk logo" />
   <h1>RelayDesk</h1>
   <p>Real-time customer support &amp; chat management platform.</p>
   <p>
