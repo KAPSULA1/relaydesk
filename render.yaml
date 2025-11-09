@@ -9,7 +9,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt && \
       python manage.py collectstatic --noinput
-    startCommand: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:8010
+    startCommand: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:$PORT
     runtime: python3.12
     healthCheckPath: /api/health/
     envVars:
@@ -37,8 +37,10 @@ services:
     region: oregon
     version: 7
 
-  - type: postgresql
-    name: relaydesk-db
+databases:
+  - name: relaydesk-db
     plan: free
     region: oregon
-    version: 16
+    databaseName: relaydesk
+    user: relayuser
+    postgresMajorVersion: 16
