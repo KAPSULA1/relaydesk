@@ -33,7 +33,7 @@ export function useWebSocket(roomSlug: string, token: string) {
         const attempt = reconnectAttempts.current + 1;
         reconnectAttempts.current = attempt;
         const delay = Math.min(5000, attempt * 1000);
-        reconnectTimer.current = window.setTimeout(connect, delay);
+        reconnectTimer.current = setTimeout(connect, delay);
       };
 
       ws.current.onerror = (error) => {
