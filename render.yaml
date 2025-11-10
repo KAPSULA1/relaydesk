@@ -2,6 +2,7 @@ services:
   - type: web
     name: relaydesk-backend
     env: python
+    runtime: python3.12
     region: oregon
     rootDir: backend
     plan: free
@@ -10,7 +11,6 @@ services:
       pip install -r requirements.txt && \
       python manage.py collectstatic --noinput
     startCommand: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:$PORT
-    runtime: python3.12
     healthCheckPath: /api/health/
     envVars:
       - key: DJANGO_SETTINGS_MODULE
@@ -39,7 +39,6 @@ services:
 
 databases:
   - name: relaydesk-db
-    plan: free
     region: oregon
     databaseName: relaydesk
     user: relayuser
