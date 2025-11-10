@@ -18,29 +18,34 @@ services:
       - key: DJANGO_SECRET_KEY
         sync: false
       - key: DATABASE_URL
-        fromDatabase:
+        fromService:
           name: relaydesk-db
+          type: pserv
           property: connectionString
       - key: REDIS_URL
         fromService:
           name: relaydesk-redis
-          type: keyvalue
+          type: redis
           property: connectionString
       - key: ALLOWED_HOSTS
         value: "relaydesk.onrender.com,localhost"
       - key: CORS_ALLOWED_ORIGINS
         value: "https://relaydesk.onrender.com,https://www.relaydesk.onrender.com"
 
-  - type: keyvalue
+  - type: redis
     name: relaydesk-redis
     plan: free
     region: oregon
     version: 7
 
-databases:
-  - name: relaydesk-db
+  - type: pserv
+    name: relaydesk-db
     plan: free
+    env: docker
     region: oregon
-    databaseName: relaydesk
-    user: relayuser
-    postgresMajorVersion: 16
+    buildCommand: ""
+    startCommand: docker-entrypoint.sh postgres
+    disk:
+      name: relaydesk-data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1
