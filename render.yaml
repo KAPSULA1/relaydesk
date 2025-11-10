@@ -24,14 +24,14 @@ services:
       - key: REDIS_URL
         fromService:
           name: relaydesk-redis
-          type: redis
+          type: keyvalue
           property: connectionString
       - key: ALLOWED_HOSTS
         value: "relaydesk.onrender.com,localhost"
       - key: CORS_ALLOWED_ORIGINS
         value: "https://relaydesk.onrender.com,https://www.relaydesk.onrender.com"
 
-  - type: redis
+  - type: keyvalue
     name: relaydesk-redis
     plan: free
     region: oregon
@@ -39,6 +39,7 @@ services:
 
 databases:
   - name: relaydesk-db
+    plan: free
     region: oregon
     databaseName: relaydesk
     user: relayuser
