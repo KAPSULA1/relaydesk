@@ -19,9 +19,16 @@ from chat.middleware import JwtAuthMiddlewareStack
 
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
-    "websocket": AllowedHostsOriginValidator(
-        JwtAuthMiddlewareStack(
-            URLRouter(websocket_urlpatterns)
-        )
+    # TEMPORARY: Removed AllowedHostsOriginValidator to test if it's blocking connections
+    # The validator was rejecting WebSocket connections from Vercel frontend
+    "websocket": JwtAuthMiddlewareStack(
+        URLRouter(websocket_urlpatterns)
     ),
+
+    # ORIGINAL (commented out for testing):
+    # "websocket": AllowedHostsOriginValidator(
+    #     JwtAuthMiddlewareStack(
+    #         URLRouter(websocket_urlpatterns)
+    #     )
+    # ),
 })
