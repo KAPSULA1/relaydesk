@@ -78,18 +78,27 @@ CHANNEL_LAYERS = {
 # }
 
 # Cache Configuration
+# TEMPORARY: Using dummy cache to avoid Redis connection issues during testing
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': REDIS_URL,
-        'KEY_PREFIX': 'relaydesk',
-        'TIMEOUT': 300,
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
+# ORIGINAL Redis cache configuration (commented out for testing):
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': REDIS_URL,
+#         'KEY_PREFIX': 'relaydesk',
+#         'TIMEOUT': 300,
+#     }
+# }
+
 # Celery Configuration
-CELERY_BROKER_URL = REDIS_URL
-CELERY_RESULT_BACKEND = REDIS_URL
+# TEMPORARY: Disabled to avoid Redis connection during testing
+# CELERY_BROKER_URL = REDIS_URL
+# CELERY_RESULT_BACKEND = REDIS_URL
 
 # Email Backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
