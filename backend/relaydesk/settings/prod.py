@@ -58,16 +58,24 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 REDIS_URL = config('REDIS_URL', default='redis://localhost:6379')
 
 # Channels Configuration
+# TEMPORARY: Using InMemory for testing to isolate Redis connection issue
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [REDIS_URL],
-            'capacity': 1500,
-            'expiry': 10,
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
+
+# ORIGINAL Redis configuration (commented out for testing):
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [REDIS_URL],
+#             'capacity': 1500,
+#             'expiry': 10,
+#         },
+#     },
+# }
 
 # Cache Configuration
 CACHES = {
