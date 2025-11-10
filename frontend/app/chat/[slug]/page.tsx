@@ -167,7 +167,7 @@ export default function ChatPage() {
           clearInterval(pingIntervalRef.current);
           pingIntervalRef.current = null;
         }
-        reconnectTimerRef.current = window.setTimeout(() => {
+        reconnectTimerRef.current = setTimeout(() => {
           console.log('WS reconnecting');
           setConnectionState('reconnecting');
           connectSocket();
