@@ -10,12 +10,15 @@ logger = logging.getLogger(__name__)
 
 class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
+        print("🔌 ChatConsumer.connect() called!")
         self.room_slug = self.scope['url_route']['kwargs']['room_slug']
         self.room_group_name = f'chat_{self.room_slug}'
         self.user = self.scope['user']
+        print(f"🔌 User: {getattr(self.user, 'username', 'anonymous')} authenticated={getattr(self.user, 'is_authenticated', False)}")
         logger.info(f"🔌 WebSocket connect attempt slug={self.room_slug} user={getattr(self.user, 'username', 'anonymous')}")
-        
+
         if not self.user.is_authenticated:
+            print("❌ WebSocket denied: unauthenticated user")
             logger.warning("❌ WebSocket denied: unauthenticated user")
             await self.close()
             return
