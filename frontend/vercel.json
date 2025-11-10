@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm install && npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://relaydesk-backend.onrender.com/api/:path*"
+    }
+  ]
+}
