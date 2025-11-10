@@ -2,25 +2,24 @@ services:
   - type: web
     name: relaydesk-backend
     env: python
-    runtime: python3.12
+    runtime: python-3.12.3
     region: oregon
     rootDir: backend
     plan: free
     autoDeploy: true
     buildCommand: |
       pip install -r requirements.txt && \
-      python manage.py collectstatic --noinput
-    startCommand: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:$PORT
+      python manage.py collectstatic --noinput --clear
+    startCommand: gunicorn relaydesk.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
     healthCheckPath: /api/health/
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: relaydesk.settings.prod
-      - key: DJANGO_SECRET_KEY
-        sync: false
+      - key: SECRET_KEY
+        generateValue: true
       - key: DATABASE_URL
-        fromService:
+        fromDatabase:
           name: relaydesk-db
-          type: pserv
           property: connectionString
       - key: REDIS_URL
         fromService:
@@ -28,24 +27,25 @@ services:
           type: redis
           property: connectionString
       - key: ALLOWED_HOSTS
-        value: "relaydesk.onrender.com,localhost"
+        value: relaydesk-backend.onrender.com,relaydesk.onrender.com
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://relaydesk.onrender.com,https://www.relaydesk.onrender.com"
+        value: https://relaydesk.vercel.app,https://relaydesk-frontend.vercel.app
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://relaydesk.vercel.app,https://relaydesk-frontend.vercel.app
+      - key: PYTHONUNBUFFERED
+        value: "1"
 
   - type: redis
     name: relaydesk-redis
     plan: free
     region: oregon
-    version: 7
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []
 
-  - type: pserv
-    name: relaydesk-db
+databases:
+  - name: relaydesk-db
+    databaseName: relaydesk_prod
+    user: relaydesk_user
     plan: free
-    env: docker
     region: oregon
-    buildCommand: ""
-    startCommand: docker-entrypoint.sh postgres
-    disk:
-      name: relaydesk-data
-      mountPath: /var/lib/postgresql/data
-      sizeGB: 1
+    ipAllowList: []
