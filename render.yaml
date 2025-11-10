@@ -2,7 +2,6 @@ services:
   - type: web
     name: relaydesk-backend
     env: python
-    runtime: python-3.12.3
     region: oregon
     rootDir: backend
     plan: free
