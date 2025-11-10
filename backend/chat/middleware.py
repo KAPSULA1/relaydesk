@@ -31,6 +31,7 @@ class JwtAuthMiddleware(BaseMiddleware):
 
         path = scope.get("path", "unknown")
         client = scope.get("client")
+        print(f"🔐 WebSocket auth attempt path={path} client={client} token_present={bool(token)}")
         logger.info(f"🔐 WebSocket auth attempt path={path} client={client}")
 
         if token:
