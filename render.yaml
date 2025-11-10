@@ -17,9 +17,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        fromDatabase:
-          name: relaydesk-db
-          property: connectionString
+        sync: false
       - key: REDIS_URL
         fromService:
           name: relaydesk-redis
@@ -39,12 +37,4 @@ services:
     plan: free
     region: oregon
     maxmemoryPolicy: allkeys-lru
-    ipAllowList: []
-
-databases:
-  - name: relaydesk-db
-    databaseName: relaydesk_prod
-    user: relaydesk_user
-    plan: free
-    region: oregon
     ipAllowList: []
