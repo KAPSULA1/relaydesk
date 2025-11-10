@@ -131,7 +131,7 @@ export default function ChatPage() {
         console.log('WS connected');
         setConnectionState('connected');
         socket.send(JSON.stringify({ type: 'join', message: 'Client joined the room' }));
-        pingIntervalRef.current = window.setInterval(() => {
+        pingIntervalRef.current = setInterval(() => {
           if (ws.current && ws.current.readyState === WebSocket.OPEN) {
             ws.current.send(JSON.stringify({ type: 'ping' }));
             console.log('WS ping sent');
