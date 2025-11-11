@@ -6,6 +6,7 @@ import { useUIStore } from '@/lib/stores/uiStore';
 import { RoomSkeleton } from '@/components/ui/Skeleton';
 import { ToastContainer } from '@/components/ui/Toast';
 import api from '@/lib/api/axios-client';
+import CreateRoomModal from '@/components/modals/CreateRoomModal';
 
 interface Room {
  id: string;
@@ -22,6 +23,7 @@ export default function RoomsPage() {
  const [rooms, setRooms] = useState<Room[]>([]);
  const [loading, setLoading] = useState(true);
  const [searchQuery, setSearchQuery] = useState('');
+ const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
  const { theme, toggleTheme, addNotification } = useUIStore();
 
  useEffect(() => {
@@ -57,6 +59,21 @@ export default function RoomsPage() {
 
  const goToRoom = (slug: string) => {
    window.location.assign(`/chat/${slug}`);
+ };
+
+ const handleCreateSuccess = async () => {
+   addNotification({
+     type: 'success',
+     message: 'Room created successfully!',
+   });
+
+   // Reload rooms list
+   try {
+     const response = await api.get<Room[]>('/api/rooms/');
+     setRooms(Array.isArray(response.data) ? response.data : []);
+   } catch (err) {
+     console.error('Error reloading rooms:', err);
+   }
  };
 
  const filteredRooms = rooms.filter(room =>
@@ -136,6 +153,7 @@ export default function RoomsPage() {
              whileTap={{ scale: 0.95 }}
              initial={{ opacity: 0, x: 20 }}
              animate={{ opacity: 1, x: 0 }}
+             onClick={() => setIsCreateModalOpen(true)}
              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white rounded-xl font-semibold shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 transition-all"
            >
              <Plus className="w-5 h-5" />
@@ -256,6 +274,14 @@ export default function RoomsPage() {
          </motion.div>
        )}
      </main>
+
+     {/* Create Room Modal */}
+     <CreateRoomModal
+       isOpen={isCreateModalOpen}
+       onClose={() => setIsCreateModalOpen(false)}
+       onSuccess={handleCreateSuccess}
+       theme={theme}
+     />
    </div>
  );
 }
