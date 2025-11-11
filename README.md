@@ -29,8 +29,8 @@
 flowchart LR
   subgraph Browser["Next.js 16 (Vercel)"]
     UI["React + Tailwind UI"]
+    WS["WebSocket Client"]
     State["Zustand Store"]
-    Query["React Query"]
   end
 
   subgraph API["Django 5 Backend"]
@@ -40,14 +40,14 @@ flowchart LR
     Tasks["Celery Workers"]
   end
 
-  subgraph Infra["Infra"]
+  subgraph Infra["Infrastructure"]
     DB[(PostgreSQL 16)]
     Cache[(Redis 7)]
   end
 
   UI -->|HTTPS| Rest
+  WS -->|WSS| Socket
   State -->|JWT| Auth
-  Query -->|Realtime| Socket
   Rest --> DB
   Rest --> Cache
   Socket --> Cache
