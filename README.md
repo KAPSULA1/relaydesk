@@ -7,6 +7,15 @@
     <a href="#testing"><img src="https://img.shields.io/badge/coverage-84%25-brightgreen?logo=pytest" alt="Coverage" /></a>
     <a href="#deployment"><img src="https://img.shields.io/badge/deploy-render%20%26%20vercel-0f62fe" alt="Deploy" /></a>
   </p>
+
+  <h3>🚀 Live Demos</h3>
+  <p>
+    <a href="https://relaydesk-on95.vercel.app"><img src="https://img.shields.io/badge/Frontend-Live%20Demo-00C7B7?style=for-the-badge&logo=vercel" alt="Frontend Demo" /></a>
+    <a href="https://relaydesk-backend.onrender.com/api/health/"><img src="https://img.shields.io/badge/Backend-API%20Health-46E3B7?style=for-the-badge&logo=render" alt="Backend API" /></a>
+  </p>
+  <p>
+    <strong>Test Accounts:</strong> user1, user2, user3... user10 | <strong>Password:</strong> demo123
+  </p>
 </div>
 
 > RelayDesk unifies live chat, escalations, and customer context in one console. Django Channels + Redis power WebSocket conversations, while Next.js 16 delivers a Lightning-fast dashboard. DevOps enjoy Docker, Makefile tasks, and CI/CD pipelines that deploy seamlessly to Render (backend) and Vercel (frontend).  

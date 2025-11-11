@@ -121,7 +121,7 @@ export default function LoginPage() {
                     ? 'bg-[#111113] border-gray-700/50 text-white placeholder-gray-500 focus:border-blue-500 focus:bg-[#1a1a1c]'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500'
                 } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                placeholder="alice_dev"
+                placeholder="Enter username"
               />
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function LoginPage() {
                     ? 'bg-[#111113] border-gray-700/50 text-white placeholder-gray-500 focus:border-blue-500 focus:bg-[#1a1a1c]'
                     : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500'
                 } focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
-                placeholder="demo123"
+                placeholder="Enter password"
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function LoginPage() {
             )}
           </motion.button>
 
-          {/* Demo Accounts */}
+          {/* Demo Info */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -184,14 +184,13 @@ export default function LoginPage() {
                 : 'bg-blue-50 border-blue-200 text-blue-700'
             }`}
           >
-            <p className="font-semibold mb-2 flex items-center gap-2">
+            <p className="font-semibold mb-1 flex items-center gap-2">
               <User className="w-4 h-4" />
-              Demo Accounts:
+              Demo Access:
             </p>
-            <div className="space-y-1 ml-6">
-              <p className="font-mono text-xs">alice_dev / demo123</p>
-              <p className="font-mono text-xs">bob_designer / demo123</p>
-            </div>
+            <p className="text-xs ml-6">
+              Test accounts available (user1-user10, password: demo123)
+            </p>
           </motion.div>
         </motion.div>
       </motion.div>
