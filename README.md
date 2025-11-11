@@ -33,10 +33,10 @@ flowchart LR
     Query["React Query"]
   end
 
-  subgraph API["Django 5 + DRF + Channels"]
+  subgraph API["Django 5 Backend"]
     Auth["JWT Auth"]
-    Rest["/api/*"]
-    Socket["WebSocket Consumers"]
+    Rest["REST API (DRF)"]
+    Socket["WebSocket (Channels)"]
     Tasks["Celery Workers"]
   end
 
