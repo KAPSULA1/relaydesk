@@ -2,8 +2,8 @@
   <h1>RelayDesk</h1>
   <p>Real-time customer support &amp; chat management platform.</p>
   <p>
-    <a href="https://github.com/KAPSULA1/relaydesk/actions/workflows/backend.yml"><img src="https://github.com/KAPSULA1/relaydesk/actions/workflows/backend.yml/badge.svg" alt="Backend CI" /></a>
-    <a href="https://github.com/KAPSULA1/relaydesk/actions/workflows/frontend.yml"><img src="https://github.com/KAPSULA1/relaydesk/actions/workflows/frontend.yml/badge.svg" alt="Frontend CI" /></a>
+    <a href="https://github.com/Giorgi-Kapanadze/relaydesk/actions/workflows/backend.yml"><img src="https://github.com/Giorgi-Kapanadze/relaydesk/actions/workflows/backend.yml/badge.svg" alt="Backend CI" /></a>
+    <a href="https://github.com/Giorgi-Kapanadze/relaydesk/actions/workflows/frontend.yml"><img src="https://github.com/Giorgi-Kapanadze/relaydesk/actions/workflows/frontend.yml/badge.svg" alt="Frontend CI" /></a>
     <a href="#testing"><img src="https://img.shields.io/badge/coverage-84%25-brightgreen?logo=pytest" alt="Coverage" /></a>
     <a href="#deployment"><img src="https://img.shields.io/badge/deploy-render%20%26%20vercel-0f62fe" alt="Deploy" /></a>
   </p>
