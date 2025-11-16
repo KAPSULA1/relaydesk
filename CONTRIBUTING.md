@@ -92,4 +92,4 @@ If these commands succeed locally (`make be-test`, `make fe-test`, `make be-lint
 
 ## Need Help?
 
-Open a GitHub discussion or issue, or email the maintainers at [support@relaydesk.dev](mailto:support@relaydesk.dev). We’re happy to help clarify scope, provide feedback, or pair on larger features.
+Open a GitHub discussion or issue, or email the maintainers at [giorgikapanadze222@gmail.com](mailto:giorgikapanadze222@gmail.com). We’re happy to help clarify scope, provide feedback, or pair on larger features.

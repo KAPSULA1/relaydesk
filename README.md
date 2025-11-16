@@ -192,7 +192,7 @@ Coverage artifacts are uploaded by CI and surfaced via the badge above.
 ## 📝 License & Contact
 
 Licensed under the [MIT License](LICENSE).  
-Questions or collaboration ideas? Email **support@relaydesk.app**.
+Questions or collaboration ideas? Email **giorgikapanadze222@gmail.com**.
 
 ---
 

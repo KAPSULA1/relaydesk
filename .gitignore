@@ -2,14 +2,19 @@
 # RelayDesk Project Ignore
 # ==========================
 
-# OS junk
+# ==========================
+# OS Junk
+# ==========================
 .DS_Store
 Thumbs.db
 *.swp
 *.swo
 *.orig
+*~
 
+# ==========================
 # Python / Django
+# ==========================
 __pycache__/
 *.py[cod]
 *.pyo
@@ -30,21 +35,27 @@ backend/htmlcov/
 celerybeat-schedule
 instance/
 
-# Virtual environments
+# ==========================
+# Virtual Environments
+# ==========================
 venv/
 .venv/
 env/
 backend/venv*/
 backend/venv_relaydesk_pro/
 
-# Django & local configs
+# ==========================
+# Django & Local Configs
+# ==========================
 backend/db.sqlite3
 backend/media/
 backend/staticfiles/
 backend/.env
 backend/.env.*
 
+# ==========================
 # Node / Next.js
+# ==========================
 node_modules/
 frontend/node_modules/
 frontend/.next/
@@ -64,31 +75,90 @@ frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
 
+# ==========================
 # Logs
+# ==========================
 *.log
 logs/
 backend/logs/
 
-# VSCode / IDE
+# ==========================
+# IDE / Editor Files
+# ==========================
 .vscode/
 .idea/
 *.iml
 .fleet/
+*.sublime-workspace
+*.sublime-project
 
-# Docker / Compose artifacts
+# ==========================
+# Docker / Compose
+# ==========================
 docker-compose.override.yml
 *.pid
+*.sock
 
-# Misc generated docs
+# ==========================
+# Archive Artifacts
+# ==========================
 *.tgz
 *.zip
 
-# Coverage reports
+# ==========================
+# Coverage Reports
+# ==========================
 frontend/coverage/
 coverage/
 
-# Local scripts or secrets
+# ==========================
+# Local Secrets
+# ==========================
 secrets.*
 *.key
 *.pem
+
+# ==========================
+# Backups / Drafts / Saves
+# ==========================
+# Folders
+save/
+saves/
+backup/
+backups/
+old/
+draft/
+temp/
+tmp/
+copy/
+
+# File patterns
+*.save
+*.backup
+*.bak
+*.old
+*.tmp
+*.temp
+*~
+*-copy.*
+*-backup.*
+*-old.*
+
+# Editor auto backup variants
+*#.#
+.#*
+
+# ==========================
+# Misc Temp
+# ==========================
+*.retry
+*.cache
+*.temp
+
+# Temporary editor backups
+*~
+*.tmp
+*.temp
+*.bak
+*.backup
 

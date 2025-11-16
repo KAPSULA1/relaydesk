@@ -10,7 +10,7 @@ Only the latest main branch (and releases cut from it) receive security fixes. P
 
 ## Reporting a Vulnerability
 
-- Email: [security@relaydesk.dev](mailto:security@relaydesk.dev)
+- Email: [giorgikapanadze222@gmail.com](mailto:giorgikapanadze222@gmail.com)
 - Expected response: within 72 hours
 - Please use responsible disclosure procedures and do not open public issues for security concerns.
 
